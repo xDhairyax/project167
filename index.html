@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Image Tracking AR</title>
+  
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+  
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
+    
+    <script src="./play-on-click.js"></script>
+  
+    <style>
+      
+      .arjs-loader{
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: rgba(0, 0, 0, 0.8);
+        z-index: 9999;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+  
+      .arjs-loader div{
+        color:white;
+        font-size: 1.25em;
+        text-align: center;
+      }
+  
+    </style>
+  
+  </head>
+
+  <body style="margin : 0px; overflow: hidden;">
+    <a-scene vr-mode-ui="enabled:false" renderer="logarithmicDepthBuffer:true"
+            embedded arjs="trackingMethod:best;debugUIENabled:false;sourceType:webcam">
+
+            <a-entity id="camera" camera position="0 0 10"></a-entity>
+
+            <a-assets>
+                <video
+                id="video1"
+                src="./assets/videos/football.mov"
+                preload="auto"
+                loop="true"
+                playsinline
+                webkit-playsinline
+                crossorigin="anonymous"
+                autoplay
+                ></video>
+            </a-assets>
+
+            <a-nft
+            type="nft"
+            id="nft1"
+            url="./assets/images-marker/soccer"
+            smooth="true"
+            smoothTolerance="0.01"
+            smoothThreshold="5"
+            smoothCount="10"
+            >
+
+                <a-video
+                id="vid"
+                src="#video1"
+                height="300"
+                width="300"
+                position="150 150 -50"
+                rotation="-90 0 0"
+                play-on-click
+                ></a-video>
+
+            </a-nft>
+
+    </a-scene>
+  </body>
+
+</html>
